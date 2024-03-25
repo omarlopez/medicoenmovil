@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-jt!1qjs2p8ivg3=iho)vjm%&%6%*-*#t!qmbq%2=@3$mk8emz#
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+MEDIA_ROOT = os.path.join(BASE_DIR, '') # 'data' is my media folder
+MEDIA_URL = ''
 
 
 # Application definition
@@ -122,6 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
