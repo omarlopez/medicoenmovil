@@ -16,6 +16,9 @@ from django.core.management.utils import get_random_secret_key
 import dj_database_url
 import environ
 
+env = environ.Env()
+environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('DATABASE_PORT')
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -96,11 +99,11 @@ WSGI_APPLICATION = 'adminmedicoenmovil.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DATABASE_NAME'),
-        'user': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABSE_HOST'),
-        'PORT': env('DATABASE_PORT'),
+        'NAME': 'defaultdb',
+        'user': 'doadmin',
+        'PASSWORD': 'AVNS_OyVGfhxdwSLdOwCJWwg',
+        'HOST': 'medicoenmovil-db-postgresql-nyc3-01107-do-user-1127522-0.c.db.ondigitalocean.com',
+        'PORT': '25060',
         'OPTIONS': {'sslmode': 'require'},
     }
 }
