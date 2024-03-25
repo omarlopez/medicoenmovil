@@ -78,14 +78,28 @@ WSGI_APPLICATION = 'adminmedicoenmovil.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# medicoenmovil local
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'medicomovil_db',
+#        'user': 'postgres',
+#        'PASSWORD': '12345678',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+#}
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'medicomovil_db',
-        'user': 'postgres',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'defaultdb',
+        'user': 'doadmin',
+        'PASSWORD': 'AVNS_OyVGfhxdwSLdOwCJWwg',
+        'HOST': 'medicoenmovil-db-postgresql-nyc3-01107-do-user-1127522-0.c.db.ondigitalocean.com',
+        'PORT': '25060',
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
