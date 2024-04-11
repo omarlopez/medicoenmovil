@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 MEDIA_ROOT = os.path.join(BASE_DIR, '') # 'data' is my media folder
@@ -47,6 +47,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'doctors',
     'prices',
+    'payments',
+    'statusCatalog',
+    'activity',
+    'myActivity',
+    'assignment',
+    'historyMedicalConsultations',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'adminmedicoenmovil.urls'
@@ -78,6 +87,18 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.permissions.AllowAny',
+    ],
+}
+
 WSGI_APPLICATION = 'adminmedicoenmovil.wsgi.application'
 
 
@@ -85,29 +106,29 @@ WSGI_APPLICATION = 'adminmedicoenmovil.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # medicoenmovil local
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'medicomovil_db',
-#        'user': 'postgres',
-#        'PASSWORD': '12345678',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
-#}
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'defaultdb',
-        'USER': 'doadmin',
-        'PASSWORD': 'AVNS_OyVGfhxdwSLdOwCJWwg',
-        'HOST': 'medicoenmovil-db-postgresql-nyc3-01107-do-user-1127522-0.c.db.ondigitalocean.com',
-        'PORT': '25060',
-        'OPTIONS': {'sslmode': 'require'},
+        'NAME': 'medicomovil_db',
+        'user': 'postgres',
+        'PASSWORD': '12345678',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'defaultdb',
+#        'USER': 'doadmin',
+#        'PASSWORD': 'AVNS_OyVGfhxdwSLdOwCJWwg',
+#        'HOST': 'medicoenmovil-db-postgresql-nyc3-01107-do-user-1127522-0.c.db.ondigitalocean.com',
+#        'PORT': '25060',
+#        'OPTIONS': {'sslmode': 'require'},
+#    }
+#}
 
 
 # Password validation
